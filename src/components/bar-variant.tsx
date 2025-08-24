@@ -1,3 +1,4 @@
+"use client"
 import { format } from "date-fns"
 import React from 'react'
 import {Bar, BarChart, XAxis, ResponsiveContainer, Tooltip, CartesianGrid} from "recharts";

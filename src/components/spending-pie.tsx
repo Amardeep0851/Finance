@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react'
 import { Loader2, PieChart, RadarIcon, Target } from "lucide-react"
 

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react'
 import { Calendar as CalendarIcon, ChevronDown } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";

@@ -13,7 +13,7 @@ import { useBulkDeleteCategories } from "@/features/categories/api/use-bulk-dele
 import { Loader2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-function page() {
+function Page() {
   const columns = columnsPage();
   const categoriesQuery = useGetCategories();
   const bulkDeleteMutation = useBulkDeleteCategories();
@@ -74,4 +74,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

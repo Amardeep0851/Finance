@@ -20,10 +20,5 @@ export const navbarLinks = [
     route:"/transactions",
     label:"Transactions",
     icon:"BadgeIndianRupee"
-  },
-  {
-    route:"/settings",
-    label:"Settings",
-    icon:"Settings"
   }
 ]

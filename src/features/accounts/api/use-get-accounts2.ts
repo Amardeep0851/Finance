@@ -1,7 +1,8 @@
 import { getClient } from '@/lib/hono';
+
 import {useQuery} from "@tanstack/react-query"
 
-export const honoGetAccounts = () => {
+export const useGetAccounts = () => {
   
   const client = getClient()
 

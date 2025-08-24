@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import {PiggyBank, TrendingDown, TrendingUp} from "lucide-react"
 import DataCard, { CardLoading } from "@/components/data-card";

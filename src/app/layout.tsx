@@ -22,11 +22,13 @@ export default function RootLayout({ children, }: Readonly<{
     <ClerkProvider>
       <html lang="en">
       <body className={inter.className}>
-        <Providers >
-        <SheetProvider />
+       
+         <Providers >
+          <SheetProvider />        
         <Toaster position="bottom-right" />
         {children}
         </Providers>
+       
       </body>
       </html>
     </ClerkProvider>

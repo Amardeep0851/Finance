@@ -14,13 +14,13 @@ import {
   CardTitle 
 } from "@/components/ui/card";
 import DataTable from "@/components/data-table";
-import columnsPage  from "./components/columns";
+import GetColumns  from "./components/columns";
 import { Button } from "@/components/ui/button";
 
 function TransationPage() {
   const transactionQuery = useGetTransactions();
   const transactions = transactionQuery.data || []
-  const columns = columnsPage();
+  const columns = GetColumns();
   const {isOpen, onOpen} = useNewTransactionSheet()
   const bulkDeleteMutation = useBulkDeleteTransactions();
 

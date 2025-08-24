@@ -13,7 +13,7 @@ export const useBulkDeleteAccounts = () => {
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
       const response = await client.api.accounts["bulk-delete"].$post({ json });
-      return await response.json();
+      return await response.json() as ResponseType;
     },
     onMutate: () => {
       const toastId = toast.loading("Deleting accounts...");
@@ -22,6 +22,7 @@ export const useBulkDeleteAccounts = () => {
       toast.dismiss();
       toast.success("Accounts deleted successfully.");
       queryClient.invalidateQueries({ queryKey: ["accounts"] });
+      queryClient.invalidateQueries({ queryKey: ["summary"] });
     },
     onError: (error, variables, context) => {
       toast.dismiss();

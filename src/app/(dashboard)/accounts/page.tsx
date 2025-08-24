@@ -65,7 +65,7 @@ function Page() {
         filterKey="name"
         disabled={isDisable}
         onDelete={(rows) => {
-          const ids = rows.map((row) => row.original.id);
+          const ids = rows?.map((row) => row.original.id);
           accountsBulkDeleteMutation.mutate({ids})
         }}
         />

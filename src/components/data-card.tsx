@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { BoxIcon, LucideIcon } from "lucide-react";
 import { cva, VariantProps } from "class-variance-authority";

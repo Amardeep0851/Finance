@@ -1,3 +1,4 @@
+"use client"
 import React, { useMemo } from 'react';
 import CreatableSelect from "react-select/creatable";
 import {SingleValue} from "react-select"
@@ -6,7 +7,7 @@ placeHolder?:string;
 options:{label:string, value:string}[]
 onCreate:(name:string) => void
 value:string | null | undefined;
-onChangeValue:(value?:SingleValue<{label:string, value:string}>) => void;
+onChangeValue:(value?:string) => void;
 disabled:boolean;
 
 }

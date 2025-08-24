@@ -14,7 +14,7 @@ import CategoryCell from "./category-cell";
 import { Badge } from "@/components/ui/badge";
 import { cn, formatCurrency } from "@/lib/utils";
 
-function getColumns() {
+function GetColumns() {
 
   const [sortingState, setSortingState] = useState()
   const client = getClient();
@@ -111,4 +111,4 @@ function getColumns() {
   return columns
 }
 
-export default getColumns
+export default GetColumns

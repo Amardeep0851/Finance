@@ -30,8 +30,8 @@ interface DataTableProps<TData, TValue>{
   columns:ColumnDef<TData, TValue>[];
   data:TData[] ;
   filterKey:string;
-  disabled:boolean;
-  onDelete?:(rows:Row<TData>[]) => void
+  disabled?:boolean;
+  onDelete:(rows:Row<TData>[]) => void
 }
 
 function DataTable<TData, TValue>({columns, data, filterKey, disabled, onDelete}:DataTableProps<TData, TValue>) {
@@ -79,7 +79,7 @@ function DataTable<TData, TValue>({columns, data, filterKey, disabled, onDelete}
         onClick={async () => {
         const ok = await confirm()
         if(ok){
-          onDelete(table?.getFilteredSelectedRowModel()?.rows);
+          onDelete(table.getFilteredSelectedRowModel().rows);
           table.resetRowSelection();
         }
         }}
