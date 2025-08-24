@@ -1,13 +1,9 @@
 import { getClient } from "@/lib/hono"
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
 
-export const useGetTransactions = () => {
+export const useGetTransactions = (from:string, to:string, accountId:string) => {
+  
   const client = getClient();
-  const params = useSearchParams();
-  const from  = params.get("from") ?? "";
-  const to = params.get("to") ?? "";
-  const accountId = params.get('accountId') || '';
 
   const query = useQuery({
     queryKey:["transactions", from, to, accountId],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from "sonner";
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import './globals.css';
 import SheetProvider from "@/providers/sheet-provider";
@@ -24,8 +24,9 @@ export default function RootLayout({ children, }: Readonly<{
       <body className={inter.className}>
        
          <Providers >
-          <SheetProvider />        
         <Toaster position="bottom-right" />
+        <SheetProvider />        
+        
         {children}
         </Providers>
        

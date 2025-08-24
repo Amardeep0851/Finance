@@ -6,13 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { convertAmountFromMiliUnits, formatPercentage } from "@/lib/utils";
 
 
-export const useGetSummary = () => {
+export const useGetSummary = (from?:string, to?:string, accountId?:string) => {
   const client = getClient()
-  const params = useSearchParams();
-
-  const from = params.get("from") || ""
-  const to = params.get("to") || ""
-  const accountId = params.get("accountId") || ""
 
   const query = useQuery({
     queryKey:["summary", from, to, accountId],

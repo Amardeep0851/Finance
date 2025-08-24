@@ -1,4 +1,3 @@
-"use client"
 import { formatPercentage } from "@/lib/utils";
 import React from 'react'
 

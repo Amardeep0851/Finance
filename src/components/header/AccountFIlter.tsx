@@ -14,14 +14,15 @@ import { useGetSummary } from "@/features/summary/api/use-get-summary";
 
 function AccountFIlter() {
   const {data, isLoading:isLoadingAccout} = useGetAccounts();
-  const {isLoading:isLoadingSummary} = useGetSummary();
-  const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-
+  const params = useSearchParams();
+  
   const from = params.get("from") || "";
   const to = params.get("to") || "";
   const accountId = params.get("accountId") || "";
+
+  const {isLoading:isLoadingSummary} = useGetSummary(from, to, accountId);
 
   const accountOptions = (data?.data || []).map((option) => ({
     label:option.name,

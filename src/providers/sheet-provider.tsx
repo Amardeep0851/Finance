@@ -11,7 +11,7 @@ import EditTransactionSheet from "@/features/transactions/components/edit-transa
 export default function SheetProvider() {
 
   const isMounted = useMountedState();
-  if(!isMounted){
+  if(!isMounted()){
     return null
   }
   return (

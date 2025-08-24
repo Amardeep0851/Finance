@@ -20,19 +20,21 @@ import { useGetTransactions } from "@/features/transactions/api/use-get-transact
 
 
 function DateFilter() {
-  const {isLoading:isLoadingSummary} = useGetSummary();
-  const {isLoading:isLoadingTransactions} = useGetTransactions();
-
+  
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   
+  const defaultTo = new Date()
+  const defaultFrom = subDays(defaultTo, 30)
+
   const from = params.get("from") || "";
   const to = params.get("to") || "";
   const accountId = params.get("accountId") || "";
-
-  const defaultTo = new Date()
-  const defaultFrom = subDays(defaultTo, 30)
+  
+  const {isLoading:isLoadingSummary} = useGetSummary(from, to, accountId);
+  const {isLoading:isLoadingTransactions} = useGetTransactions(from, to, accountId);
+  
 
   const period = {
     from: from? new Date(from) : defaultFrom,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import Header from "@/components/header/Header"
 
@@ -9,6 +9,7 @@ interface DashboardProps {
 function DashboardLayout({children}:DashboardProps) {
   return (
     <>
+      
       <Header />
       <main className="px-3 lg:px-14">
       {children}</main>

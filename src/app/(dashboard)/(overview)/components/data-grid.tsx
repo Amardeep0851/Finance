@@ -2,7 +2,6 @@
 import React from 'react';
 import {PiggyBank, TrendingDown, TrendingUp} from "lucide-react"
 import DataCard, { CardLoading } from "@/components/data-card";
-import { useGetSummary } from "@/features/summary/api/use-get-summary";
 import { useSearchParams } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 
@@ -19,10 +18,12 @@ data:{
 }
 
 function DataGrid({data, isLoading}:DataGridProps) {
+
   const params = useSearchParams();
   const from = params.get("from") || undefined;
   const to = params.get("to") || undefined;
   const dateRangeLable = formatDate({from, to});
+  
   if(isLoading){
     return (
       <div className=" grid grid-cols-1 lg:grid-cols-3 gap-6">

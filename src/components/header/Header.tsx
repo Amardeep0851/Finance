@@ -28,6 +28,7 @@ function Header() {
         <div className="text-white text-xl">
           Welcome {isLoaded && `, ${user?.fullName}`} 
         </div>
+        
         <Filter />
       </div>
     </div>

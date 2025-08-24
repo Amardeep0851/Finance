@@ -1,4 +1,3 @@
-"use client"
 import React from 'react';
 import CurrencyInput from "react-currency-input-field"
 import { 

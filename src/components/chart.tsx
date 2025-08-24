@@ -1,4 +1,3 @@
-"use client"
 import React, { useState } from 'react'
 import { cva } from "class-variance-authority";
 import { AreaChart, BarChart, LineChart, Loader2 } from "lucide-react";
