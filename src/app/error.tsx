@@ -1,8 +1,12 @@
 "use client";
 
+import type { Metadata } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+export const metadata:Metadata = {
+title:"Error - Finance tracker"
+}
 
 export default function ErrorPage({ error, reset }: { error: Error; reset: () => void }) {
 

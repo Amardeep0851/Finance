@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata:Metadata = {
+title:"Not found page - Finance tracker"
+}
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white text-gray-800 px-4">

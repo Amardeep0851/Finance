@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMountedState } from "react-use";
 
 import NewAccountSheet from "@/features/accounts/components/NewAccountSheet";
@@ -10,8 +10,13 @@ import NewTransactionSheet from "@/features/transactions/components/new-transact
 import EditTransactionSheet from "@/features/transactions/components/edit-transaction-sheet";
 export default function SheetProvider() {
 
-  const isMounted = useMountedState();
-  if(!isMounted()){
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  },[])
+
+  if(!mounted){
     return null
   }
   return (

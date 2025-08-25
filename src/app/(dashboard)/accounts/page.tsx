@@ -12,6 +12,7 @@ import { useNewAccountSheet } from "@/features/accounts/store/useNewAccountSheet
 import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete-accounts";
 
+
 function Page() {
 
   const {onOpen} = useNewAccountSheet();
