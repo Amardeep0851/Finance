@@ -3,7 +3,7 @@ import { db } from "@/config/db";
 import { Hono } from "hono";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { z} from "zod";
-import { endOfDay, format, parse, startOfDay, subDays } from "date-fns";
+import { endOfDay, format, formatDate, parse, startOfDay, subDays } from "date-fns";
 
 
 const app = new Hono()
@@ -24,7 +24,6 @@ const app = new Hono()
     }
 
     const {from, to, accountId} = c.req.valid("query");
-    console.log(from, to, accountId);
     const defaultTo = new Date();
     const defaultFrom = subDays(defaultTo, 30)
 
@@ -51,7 +50,6 @@ const app = new Hono()
         account:true
       }
     });
-    console.log("data",data);
     return c.json({data}, 200)
   }
 ).get(
@@ -95,12 +93,11 @@ const app = new Hono()
     }
 
     const {amount, date, payee, notes, categoryId, accountId} = c.req.valid("json");
-    console.log(amount, date, payee, notes, categoryId, accountId);
-
+    console.log("Raw received date:", date, typeof date);
     const parsed = parse(format(date, "dd MMM yyyy"), "dd MMM yyyy", new Date());
     const formatedDate = new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()));
 
-    
+    console.log(formatedDate);
     const data = await db.transaction.create({
       data:{
         date:formatedDate, 
