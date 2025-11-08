@@ -1,16 +1,17 @@
-import { zValidator } from "@hono/zod-validator";
-import { db } from "@/config/db";
-import { Hono } from "hono";
-import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { z } from "zod";
+import { Hono } from "hono";
+
+import { db } from "@/config/db";
+import { zValidator } from "@hono/zod-validator";
+import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import {
   endOfDay,
   format,
-  formatDate,
   parse,
   startOfDay,
   subDays,
 } from "date-fns";
+import { normalizeDateForStorage } from "@/lib/utils";
 
 const app = new Hono()
   .get(
@@ -112,23 +113,9 @@ const app = new Hono()
         return c.json({ error: "Unauthorized access." }, 401);
       }
 
-      function normalizeDateForStorage(input: Date | string): Date {
-        const d = new Date(input);
-
-        // If the incoming value is already UTC (has 'Z' or offset in ISO string), skip shifting
-        if (typeof input === "string" && input.endsWith("Z")) {
-          return d; // already in UTC
-        }
-
-        // Otherwise, normalize to UTC midnight
-        return new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-      }
-
       const { amount, date, payee, notes, categoryId, accountId } =
         c.req.valid("json");
-      console.log("Raw received date:", date, typeof date);
       const formatedDate = normalizeDateForStorage(date);
-      console.log("Normalized:", formatedDate);
 
       const data = await db.transaction.create({
         data: {
@@ -202,15 +189,8 @@ const app = new Hono()
       const { id } = c.req.valid("param");
       const { amount, date, payee, notes, categoryId, accountId } =
         c.req.valid("json");
-
-      const parsed = parse(
-        format(date, "dd MMM yyyy"),
-        "dd MMM yyyy",
-        new Date()
-      );
-      const formatedDate = new Date(
-        Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate())
-      );
+        
+      const formatedDate = normalizeDateForStorage(date);
 
       if (!id) {
         c.json({ error: "ID is required." }, 400);
