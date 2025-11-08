@@ -3,7 +3,7 @@ import { db } from "@/config/db";
 import { Hono } from "hono";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { z} from "zod";
-import { format, parse, startOfDay, subDays } from "date-fns";
+import { endOfDay, format, parse, startOfDay, subDays } from "date-fns";
 
 
 const app = new Hono()
@@ -19,13 +19,22 @@ const app = new Hono()
     if(!auth?.userId){
       return c.json({error:"Unauthorized access."}, 401)
     }
+    function toUtc(date: Date): Date {
+      return new Date(date.getTime() - date.getTimezoneOffset() * 60_000);
+    }
 
     const {from, to, accountId} = c.req.valid("query");
+    console.log(from, to, accountId);
     const defaultTo = new Date();
     const defaultFrom = subDays(defaultTo, 30)
 
-    const fromDate = from ? parse(from, "yyyy-MM-dd", new Date()) : defaultFrom;
-    const toDate = to? parse(to, "yyyy-MM-dd", new Date()) :defaultTo;
+    
+    const fromDateLocal = from ? parse(from, "yyyy-MM-dd", new Date()) : defaultFrom;
+    const toDateLocal = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
+
+    const fromDate = toUtc(startOfDay(fromDateLocal));
+    const toDate = toUtc(endOfDay(toDateLocal));
+
     const data = await db.transaction.findMany({
       where:{
         account:{
@@ -35,13 +44,14 @@ const app = new Hono()
           gte:fromDate,
           lte:toDate
         },
-        accountId:accountId? accountId: undefined
+        ...(accountId && { accountId })
       },
       include:{
         categories:true,
         account:true
       }
-    })
+    });
+    console.log("data",data);
     return c.json({data}, 200)
   }
 ).get(
@@ -83,8 +93,14 @@ const app = new Hono()
     if(!auth?.userId){
       return c.json({error:"Unauthorized access."}, 401)
     }
+
     const {amount, date, payee, notes, categoryId, accountId} = c.req.valid("json");
-    const formatedDate = startOfDay(parse(format(date, "dd MMM yyyy"), "dd MMM yyyy", new Date()));
+    console.log(amount, date, payee, notes, categoryId, accountId);
+
+    const parsed = parse(format(date, "dd MMM yyyy"), "dd MMM yyyy", new Date());
+    const formatedDate = new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()));
+
+    
     const data = await db.transaction.create({
       data:{
         date:formatedDate, 
@@ -146,7 +162,10 @@ const app = new Hono()
 
     const {id} = c.req.valid("param")
     const {amount, date, payee, notes, categoryId, accountId} = c.req.valid("json");
-
+    
+    const parsed = parse(format(date, "dd MMM yyyy"), "dd MMM yyyy", new Date());
+    const formatedDate = new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()));
+    
     if(!id){
       c.json({error:"ID is required."}, 400)
     }
@@ -166,7 +185,7 @@ const app = new Hono()
     
     const data = await db.transaction.update({
       data:{
-        date, 
+        date:formatedDate, 
         payee,
         amount,
         notes,

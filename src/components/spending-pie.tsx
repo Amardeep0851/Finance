@@ -81,7 +81,7 @@ function SpendingPie({data}:SpendingPieProps ) {
 
 export function SpendingPieLoading() {
   return (
-    <Card className="grid col-span-1 lg:col-span-3 xl:col-span-4 rounded-md p-0">
+    <Card className="grid col-span-1 lg:col-span-3 xl:col-span-2 rounded-md p-2">
     <CardHeader className="flex lg:flex-row justify-between items-center space-y-3 lg:space-y-0 pt-3 pl-4">
       <CardTitle>
         <Skeleton className="w-40 h-6" />

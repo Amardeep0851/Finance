@@ -24,7 +24,6 @@ function TransactionClient() {
   const from = params.get("from") || "";
   const to = params.get("to") || "";
   const accountId = params.get("accountId") || "";
-
   const transactionQuery = useGetTransactions(from, to, accountId);
   const transactions = transactionQuery.data || []
   const columns = GetColumns();

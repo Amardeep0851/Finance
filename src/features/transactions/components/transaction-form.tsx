@@ -54,6 +54,7 @@ function TransactionForm({defaultValues, onSubmit, disabled, accountOptions, cat
     },[form, defaultValues]);
     
   const handleOnSubmit = (values:formValues) => {
+    console.log(values);
     onSubmit(values)
   }
   return (
