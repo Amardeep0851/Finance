@@ -102,14 +102,12 @@ export const getAllDays = (
   return transactionByDays;
 };
 
-export function normalizeDateForStorage(input: Date | string): Date {
-  const d = new Date(input);
-
-  // If the incoming value is already UTC (has 'Z' or offset in ISO string), skip shifting
-  if (typeof input === "string" && input.endsWith("Z")) {
-    return d; // already in UTC
-  }
-
-  // Otherwise, normalize to UTC midnight
-  return new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+export function normalizeDateToUserUtcMidnight(date: Date | string): Date {
+  const d = new Date(date);
+  // Shift the instant forward by the client's timezone offset (in minutes)
+  const withLocalOffset = new Date(d.getTime() + d.getTimezoneOffset() * 60_000);
+  // Now build UTC midnight for that local calendar day
+  return new Date(Date.UTC(withLocalOffset.getFullYear(), withLocalOffset.getMonth(), withLocalOffset.getDate()));
 }
+
+

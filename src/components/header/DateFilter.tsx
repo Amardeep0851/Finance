@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Calendar as CalendarIcon, ChevronDown } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string"
@@ -20,6 +20,7 @@ import { useGetTransactions } from "@/features/transactions/api/use-get-transact
 
 
 function DateFilter() {
+
   
   const params = useSearchParams();
   const router = useRouter();
@@ -31,7 +32,6 @@ function DateFilter() {
   const from = params.get("from") || "";
   const to = params.get("to") || "";
   const accountId = params.get("accountId") || "";
-  
   const {isLoading:isLoadingSummary} = useGetSummary(from, to, accountId);
   const {isLoading:isLoadingTransactions} = useGetTransactions(from, to, accountId);
   
@@ -65,7 +65,16 @@ function DateFilter() {
     onCancel();
   }
   const [selectedDate, setSelectedDate] = useState<DateRange | undefined>(period)
-  const [calendarState, setCalendarState] = useState(false)
+  const [calendarState, setCalendarState] = useState(false);
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  })
+  if(!mounted)
+  {
+    return null
+  }
   return (
     <div>
       <Popover open={calendarState} onOpenChange={setCalendarState} >

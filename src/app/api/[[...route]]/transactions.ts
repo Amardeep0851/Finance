@@ -11,7 +11,7 @@ import {
   startOfDay,
   subDays,
 } from "date-fns";
-import { normalizeDateForStorage } from "@/lib/utils";
+import { normalizeDateToUserUtcMidnight } from "@/lib/utils";
 
 const app = new Hono()
   .get(
@@ -115,7 +115,7 @@ const app = new Hono()
 
       const { amount, date, payee, notes, categoryId, accountId } =
         c.req.valid("json");
-      const formatedDate = normalizeDateForStorage(date);
+      const formatedDate = normalizeDateToUserUtcMidnight(date);
 
       const data = await db.transaction.create({
         data: {
@@ -189,9 +189,11 @@ const app = new Hono()
       const { id } = c.req.valid("param");
       const { amount, date, payee, notes, categoryId, accountId } =
         c.req.valid("json");
-        
-      const formatedDate = normalizeDateForStorage(date);
+      console.log("Raw:", date);
 
+      const formatedDate = normalizeDateToUserUtcMidnight(date);
+
+      console.log("Normalized:", normalizeDateToUserUtcMidnight(date));
       if (!id) {
         c.json({ error: "ID is required." }, 400);
       }

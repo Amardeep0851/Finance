@@ -83,13 +83,13 @@ function NewTransactionSheet() {
         </SheetDescription>
       </SheetHeader>
         <AccountForm
-         onSubmit={onSubmit}
-         disabled={isDisabled}
-         accountOptions={accountOptions}
-         categoryOptions={categoryOptions}
-         onCreateAccount={onCreateAccount}
-         onCreateCategory={onCreateCategory}
-         defaultValues={defaultValues}
+          onSubmit={onSubmit}
+          disabled={isDisabled}
+          accountOptions={accountOptions}
+          categoryOptions={categoryOptions}
+          onCreateAccount={onCreateAccount}
+          onCreateCategory={onCreateCategory}
+          defaultValues={defaultValues}
         />
       </SheetContent>
     </Sheet>
