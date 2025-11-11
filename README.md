@@ -96,36 +96,35 @@ This project demonstrates true end-to-end type safety. Types flow from the datab
 
 ## 📸 Screenshots
 
-Add 6–7 screenshots to show key flows. Replace the placeholder links with actual images in your repo (`/screenshots/...`).
+- **Home / Overview**  
+  <img width="1893" height="854" alt="overview1" src="https://github.com/user-attachments/assets/7951e9b1-d5f3-463d-a72a-f6e730f02a8d" />
 
-- Home / Dashboard  
-  `![Dashboard](/screenshots/dashboard.png)`
+- **Overview with Calendar**  
+  <img width="1893" height="864" alt="overview2" src="https://github.com/user-attachments/assets/4105bfe6-1016-4395-9654-c437cccd41d2" />
 
-- Accounts Table  
-  `![Accounts](/screenshots/accounts.png)`
+- **Overview with Chart Options**  
+  <img width="1906" height="862" alt="overview3" src="https://github.com/user-attachments/assets/1d2e35da-e297-40b1-b25b-b907ffd6d44d" />
 
-- Categories Table  
-  `![Categories](/screenshots/categories.png)`
+- **Accounts Table**  
+  <img width="1919" height="858" alt="account" src="https://github.com/user-attachments/assets/ed0ca3bd-4a6d-4cb3-a073-3275bafe49fa" />
 
-- Add Transaction Modal  
-  `![Add Transaction](/screenshots/add-transaction.png)`
+- **Categories Table**  
+  <img width="1910" height="864" alt="category" src="https://github.com/user-attachments/assets/9e88ff35-2c95-4409-ba28-b71e0d0d2dfe" />
 
-- Transaction History / Table  
-  `![Transactions](/screenshots/transactions.png)`
+- **Transaction History / Table**  
+  <img width="1900" height="867" alt="transaction" src="https://github.com/user-attachments/assets/7f4f27e7-1c38-4536-9629-b64963f094f4" />
 
-- Overview Charts (Income)  
-  `![Income Charts](/screenshots/income-charts.png)`
+- **Add Transaction Modal**  
+  <img width="1914" height="849" alt="create transaction" src="https://github.com/user-attachments/assets/7ec2bee9-8d95-475d-9431-df634dc4c880" />
 
-- Expenses Charts (Pie / Radar / Radial)  
-  `![Expense Charts](/screenshots/expense-charts.png)`
+- **Edit or Delete Transaction**  
+  <img width="1916" height="864" alt="edit or delete transaction" src="https://github.com/user-attachments/assets/3b5cf56b-dc55-4c72-bb32-43d94bdc32f0" />
 
 ---
 
 ## 🎥 Demo Video
 
-Add a demo video URL or embed link here. Example:
-
-- Demo Walkthrough: `https://youtu.be/your-demo-video`
+🎬 [Watch Demo Video on YouTube](https://youtu.be/2jXM6hTxXME)
 
 ---
 
